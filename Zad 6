@@ -1,0 +1,21 @@
+using UnityEngine;
+
+public class FollowObject : MonoBehaviour
+{
+    public Transform target; 
+    public float smoothTime = 0.4f; 
+    public float lerpSpeed = 5.0f; 
+
+    private Vector3 velocity = Vector3.zero; 
+
+    void Update()
+    {
+        // Metoda SmoothDamp
+        Vector3 smoothDampPosition = Vector3.SmoothDamp(transform.position, target.position, ref velocity, smoothTime);
+
+        // Metoda Lerp
+        Vector3 lerpPosition = Vector3.Lerp(transform.position, target.position, Time.deltaTime * lerpSpeed);
+
+         transform.position = lerpPosition;
+    }
+}
